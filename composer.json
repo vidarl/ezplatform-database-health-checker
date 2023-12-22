@@ -1,5 +1,5 @@
 {
-  "name": "mateuszbieniek/ezplatform-database-health-checker",
+  "name": "vidarl/ezplatform-database-health-checker",
   "license": "MIT",
   "type": "ezplatform-bundle",
   "description": "Allows to check the project's database against most common issues",
