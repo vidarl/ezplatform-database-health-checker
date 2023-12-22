@@ -2,9 +2,9 @@ services:
     MateuszBieniek\EzPlatformDatabaseHealthChecker\Persistence\Legacy\Content\Gateway\DoctrineDatabase:
         arguments:
             $connection: '@ibexa.persistence.connection'
-            $contentGateway: '@ibexa.persistence.legacy.content.gateway.inner'
+            $contentGateway: '@Ibexa\Core\Persistence\Legacy\Content\Gateway\DoctrineDatabase.inner'
             $locationGateway: '@ibexa.persistence.legacy.location.gateway'
-            $fieldHandler: '@ibexa.persistence.legacy.field_handler'
+            $fieldHandler: '@Ibexa\Core\Persistence\Legacy\Content\FieldHandler'
 
     MateuszBieniek\EzPlatformDatabaseHealthChecker\Persistence\Legacy\Content\Gateway\PageFieldTypeDoctrineDatabase:
         arguments:
@@ -16,9 +16,9 @@ services:
             $contentGateway: '@MateuszBieniek\EzPlatformDatabaseHealthChecker\Persistence\Legacy\Content\Gateway\DoctrineDatabase'
             $contentService: '@ibexa.api.service.content'
             $locationService: '@ibexa.api.service.location'
-            $siteAccess: '@ibexa.siteaccess'
-            $permissionResolver: '@eZ\Publish\API\Repository\PermissionResolver'
-            $handler: '@ibexa.api.storage_engine'
+            $siteAccess: '@Ibexa\Core\MVC\Symfony\SiteAccess'
+            $permissionResolver: '@Ibexa\Contracts\Core\Repository\PermissionResolver'
+            $handler: '@ibexa.api.persistence_handler'
             $repository: '@ibexa.api.repository'
         tags:
             - { name: 'console.command', command: 'ezplatform:database-health-check' }
