@@ -1,32 +1,32 @@
 services:
     MateuszBieniek\EzPlatformDatabaseHealthChecker\Persistence\Legacy\Content\Gateway\DoctrineDatabase:
         arguments:
-            $connection: '@ezpublish.persistence.connection'
-            $contentGateway: '@ezpublish.persistence.legacy.content.gateway.inner'
-            $locationGateway: '@ezpublish.persistence.legacy.location.gateway'
-            $fieldHandler: '@ezpublish.persistence.legacy.field_handler'
+            $connection: '@ibexa.persistence.connection'
+            $contentGateway: '@ibexa.persistence.legacy.content.gateway.inner'
+            $locationGateway: '@ibexa.persistence.legacy.location.gateway'
+            $fieldHandler: '@ibexa.persistence.legacy.field_handler'
 
     MateuszBieniek\EzPlatformDatabaseHealthChecker\Persistence\Legacy\Content\Gateway\PageFieldTypeDoctrineDatabase:
         arguments:
-            $connection: '@ezpublish.persistence.connection'
+            $connection: '@ibexa.persistence.connection'
             $pageFieldTypeGateway: '@?EzSystems\EzPlatformPageFieldType\FieldType\Page\Storage\DoctrineGateway'
 
     MateuszBieniek\EzPlatformDatabaseHealthCheckerBundle\Command\DatabaseHealthCheckCommand:
         arguments:
             $contentGateway: '@MateuszBieniek\EzPlatformDatabaseHealthChecker\Persistence\Legacy\Content\Gateway\DoctrineDatabase'
-            $contentService: '@ezpublish.api.service.content'
-            $locationService: '@ezpublish.api.service.location'
-            $siteAccess: '@ezpublish.siteaccess'
+            $contentService: '@ibexa.api.service.content'
+            $locationService: '@ibexa.api.service.location'
+            $siteAccess: '@ibexa.siteaccess'
             $permissionResolver: '@eZ\Publish\API\Repository\PermissionResolver'
-            $handler: '@ezpublish.api.storage_engine'
-            $repository: '@ezpublish.api.repository'
+            $handler: '@ibexa.api.storage_engine'
+            $repository: '@ibexa.api.repository'
         tags:
             - { name: 'console.command', command: 'ezplatform:database-health-check' }
 
     MateuszBieniek\EzPlatformDatabaseHealthCheckerBundle\Command\PageFieldTypeCleanupCommand:
         arguments:
             $gateway: '@MateuszBieniek\EzPlatformDatabaseHealthChecker\Persistence\Legacy\Content\Gateway\PageFieldTypeDoctrineDatabase'
-            $repository: '@ezpublish.api.repository'
+            $repository: '@ibexa.api.repository'
         tags:
             - { name: 'console.command', command: 'ezplatform:page-fieldtype-cleanup' }
 
